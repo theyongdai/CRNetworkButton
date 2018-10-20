@@ -104,7 +104,7 @@ open class CRNetworkButton: UIButton {
         layer.strokeColor = self.crDotColor.cgColor
         layer.bounds = self.circleBounds
         layer.path = UIBezierPath(arcCenter: self.boundsCenter, radius: self.boundsCenter.y - self.crLineWidth / 2,
-                                  startAngle: CGFloat(-M_PI_2), endAngle: 3*CGFloat(M_PI_2), clockwise: true).cgPath
+                                  startAngle: CGFloat(-CGFloat.pi/2), endAngle: 3*CGFloat(CGFloat.pi/2), clockwise: true).cgPath
         
         layer.strokeEnd = 0
         layer.lineCap = kCALineCapRound
@@ -258,7 +258,7 @@ open class CRNetworkButton: UIButton {
     
     
     // MARK: - Selector && Action
-    func touchUpInside(_ sender: CRNetworkButton) {
+    @objc func touchUpInside(_ sender: CRNetworkButton) {
         guard crState != .finished else {
             return
         }
@@ -366,8 +366,8 @@ extension CRNetworkButton {
                                        attribute: .notAnAttribute, multiplier: 1,
                                        constant: bounds.height)
         
-        conWidth.priority = UILayoutPriorityDefaultLow
-        conHeight.priority = UILayoutPriorityDefaultLow
+        conWidth.priority = UILayoutPriority.defaultLow
+        conHeight.priority = UILayoutPriority.defaultLow
         
         NSLayoutConstraint.activate( [conWidth, conHeight] )
     }
@@ -510,7 +510,7 @@ extension CRNetworkButton {
         let radius   = circleBounds.midX - crLineWidth / 2
         
         var lines = [CAShapeLayer]()
-        let lineOffset:CGFloat = 2 * CGFloat(M_PI) / CGFloat(linesCount)
+        let lineOffset:CGFloat = 2 * .pi / CGFloat(linesCount)
         
         for i in 0..<linesCount {
             let line = CAShapeLayer()
@@ -537,7 +537,7 @@ extension CRNetworkButton {
         opacityAnim.fromValue = 0
         
         let rotation = CABasicAnimation(keyPath: "transform.rotation.z")
-        rotation.byValue = NSNumber(value: 2*M_PI as Double)
+        rotation.byValue = NSNumber(value: 2*Double.pi as Double)
         rotation.duration = velocity
         rotation.repeatCount = Float.infinity
         
@@ -602,7 +602,7 @@ extension CRNetworkButton {
         
         // dots will preparing
         let dotStartSize = CGSize(width: 2, height: 2)
-        let angleOffset = 2*CGFloat(M_PI) / CGFloat(linesCount)
+        let angleOffset = 2*CGFloat.pi / CGFloat(linesCount)
         let radius = circleBounds.midY - (crLineWidth * 2)
         
         var dots = [CAShapeLayer]()
@@ -788,8 +788,8 @@ extension CRNetworkButton {
         let firstRadius = 0.5 * circleBounds.midY
         let lastRadius  = 0.8 * circleBounds.midY
         
-        let firstAngle  = CGFloat(-3 * M_PI_4)
-        let lastAngle   = CGFloat(-1 * M_PI_4)
+        let firstAngle  = CGFloat(-3 * CGFloat.pi/4)
+        let lastAngle   = CGFloat(-1 * CGFloat.pi/4)
         
         var startPoint  = CGPoint(x: firstRadius * cos(firstAngle), y: firstRadius * sin(firstAngle))
         var midPoint    = CGPoint.zero
