@@ -39,47 +39,47 @@ enum AnimContext: String {
     case LoadingFinishing
 }
 
-@IBDesignable
+
 open class CRNetworkButton: UIButton {
     
     // MARK: - Public variables
     
     /// measure in radians
-    @IBInspectable open var dotLength: CGFloat = 0.1
+    open var dotLength: CGFloat = 0.1
     /// time for pass one lap
-    @IBInspectable open var velocity: Double = 1
+    open var velocity: Double = 1
     /// lines count on loading state
-    @IBInspectable open var linesCount: UInt = 2
+    open var linesCount: UInt = 2
     /// if set true, on tap will be called animation automatically
-    @IBInspectable open var animateOnTap: Bool = true
+    open var animateOnTap: Bool = true
     /// color of dots and line in loading state
-    @IBInspectable open var crDotColor: UIColor = UIColor.green
+    open var crDotColor: UIColor = UIColor.green
     /// color for error stop
-    @IBInspectable open var crErrorColor: UIColor = UIColor.red
+    open var crErrorColor: UIColor = UIColor.red
     /// line width of the border
-    @IBInspectable open var crLineWidth: CGFloat = 5
+    open var crLineWidth: CGFloat = 5
     /// after stop animate will set to default state
-    @IBInspectable open var shouldAutoReverse: Bool = false
+    open var shouldAutoReverse: Bool = false
     /// allow to show progress, use **updateProgress** to manage button progress
-    @IBInspectable open var progressMode: Bool = false
+    open var progressMode: Bool = false
     /// border Color
-    @IBInspectable open var crBorderColor: UIColor = UIColor.lightGray {
+    open var crBorderColor: UIColor = UIColor.lightGray {
         didSet {
             borderLayer.borderColor = crBorderColor.cgColor
         }
     }
-    @IBInspectable open var startText:String = "Go" {
+    open var startText:String = "Go" {
         didSet {
             updateText()
         }
     }
-    @IBInspectable open var endText:String = "Done" {
+    open var endText:String = "Done" {
         didSet {
             updateText()
         }
     }
     
-    @IBInspectable open var errorText:String = "Error"
+    open var errorText:String = "Error"
     
     /// will clear after calling
     open var completionHandler: (()->())?
